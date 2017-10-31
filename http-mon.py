@@ -4,7 +4,8 @@ from collections import deque
 import time
 from sys import argv
 from sys import exit
-import matplotlib.pyplot as plt
+from matplotlib import pyplot as plt
+from matplotlib import animation as animation
 class RealtimePlot:
 	def __init__(self, axes, max_entries = 100):
 		self.axis_x = deque(maxlen=max_entries)
@@ -22,7 +23,6 @@ class RealtimePlot:
 		self.axes.relim(); self.axes.autoscale_view() # rescale the y-axis
 
 	def animate(self, figure, callback, interval = 50):
-		import matplotlib.animation as animation
 		def wrapper(frame_index):
 			self.add(*callback(frame_index))
 			self.axes.relim(); self.axes.autoscale_view() # rescale the y-axis
