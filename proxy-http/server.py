@@ -11,7 +11,8 @@ class S(BaseHTTPRequestHandler):
 
     def do_GET(self):
         self._set_headers()
-        if (self.path=="/") :
+        path=self.path.split(":")
+        if (path[0]=="/") :
        		with open("values/temperature.dat", "r") as f :
        			res="Temperature\t" + f.readline()
         		self.wfile.write(res)
@@ -22,9 +23,18 @@ class S(BaseHTTPRequestHandler):
                 	res="Luminosite\t" + f.readline()
                 	self.wfile.write(res)
                                                                         
-	elif (self.path=="/temperature") :
-		with open("values/temperature.dat", "r") as f :
-			self.wfile.write(f.readline())
+	elif (path[0]=="/temperature") :
+		if (len(path)==1):
+			with open("values/temperature.dat", "r") as f :
+				self.wfile.write(f.readline())
+		else :	
+			request_range=int(path[1])
+			res=""
+			with open("values/temperature.dat", "r") as f :
+				for i in range(0, request_range) :
+					res+=f.readline() +"\n"
+			self.wfile.write(res)
+					
 	elif (self.path=="/humidite") :               
 		 with open("values/humidite.dat", "r") as f :
                         self.wfile.write(f.readline())

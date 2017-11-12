@@ -11,18 +11,12 @@ else
 fi;
 k=0;
 while true; do
-	if [ "$k" -eq "$remove_log" ]; then
-		k=0;
-		rm values/*;
-		echo "Old Values Removed";
-	fi;
 
 	echo ">> Updating Data <<";
-	./getvalues.sh temperature;
-	./getvalues.sh humidite;
-	./getvalues.sh light;
+	./getvalues.sh temperature $remove_log;
 	echo ">> Done : Repeating after $refresh_rate seconds <<";
 	k=$((k+1));
 	sleep $refresh_rate;
+
 done;
 
