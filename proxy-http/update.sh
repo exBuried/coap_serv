@@ -11,10 +11,9 @@ else
 fi;
 k=0;
 while true; do
-
-	echo ">> Updating Data <<";
-	./getvalues.sh temperature $remove_log;
-	echo ">> Done : Repeating after $refresh_rate seconds <<";
+	echo -e '\033[42m' '\033[30m' 'Updating Data' '\033[49m' '\e[39m';
+	./getvalues.sh $remove_log;
+	echo -e "\033[42m \033[30m Done : Repeating after $refresh_rate seconds \033[49m \e[39m";
 	k=$((k+1));
 	sleep $refresh_rate;
 
