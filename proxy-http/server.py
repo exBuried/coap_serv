@@ -22,36 +22,56 @@ class S(BaseHTTPRequestHandler):
                 with open("values/light.dat", "r") as f :
                 	res="Luminosite\t" + f.readline()
                 	self.wfile.write(res)
-                                                                        
+
 	elif (path[0]=="/temperature") :
 		if (len(path)==1):
 			with open("values/temperature.dat", "r") as f :
 				self.wfile.write(f.readline())
-		else :	
+		else :
 			request_range=int(path[1])
 			res=""
 			with open("values/temperature.dat", "r") as f :
 				for i in range(0, request_range) :
 					res+=f.readline() +"\n"
 			self.wfile.write(res)
-					
-	elif (self.path=="/humidite") :               
-		 with open("values/humidite.dat", "r") as f :
-                        self.wfile.write(f.readline())
-	elif (self.path=="/luminosite") :
-                with open("values/light.dat", "r") as f :
-                        self.wfile.write(f.readline())
+
+
+	elif (path[0]=="/humidite") :
+		if (len(path)==1):
+			with open("values/humidite.dat", "r") as f :
+				self.wfile.write(f.readline())
+		else :
+			request_range=int(path[1])
+			res=""
+			with open("values/humidite.dat", "r") as f :
+				for i in range(0, request_range) :
+					res+=f.readline() +"\n"
+			self.wfile.write(res)
+
+
+	elif (path[0]=="luminosite") :
+		if (len(path)==1):
+			with open("values/light.dat", "r") as f :
+				self.wfile.write(f.readline())
+		else :
+			request_range=int(path[1])
+			res=""
+			with open("values/light.dat", "r") as f :
+				for i in range(0, request_range) :
+					res+=f.readline() +"\n"
+			self.wfile.write(res)
+
 	else :
 		self.wfile.write("404 : Try [ /temperatue | /humidite | /luminosite ]")
 
     def do_HEAD(self):
         self._set_headers()
-        
+
     def do_POST(self):
         # Doesn't do anything with posted data
         self._set_headers()
         self.wfile.write("POST!")
-        
+
 def run(server_class=HTTPServer, handler_class=S, port=80):
     server_address = ('', port)
     httpd = server_class(server_address, handler_class)
@@ -65,5 +85,3 @@ if __name__ == "__main__":
         run(port=int(argv[1]))
     else:
         run(port=8080)
-
-
