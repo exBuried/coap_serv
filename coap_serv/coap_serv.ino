@@ -30,25 +30,25 @@ static coap_rw_buffer_t scratch_buf = {scratch_raw, sizeof(scratch_raw)};
 
 void setup()
 {
-     int i;
-    Serial.begin(9600);
-    while (!Serial) 
-    {
-        ; // wait for serial port to connect. Needed for Leonardo only
-    }
-    WiFi.config(ip);
+  int i;
+  Serial.begin(9600);
+  while (!Serial)
+  {
+    ; // wait for serial port to connect. Needed for Leonardo only
+  }
+  WiFi.config(ip);
 
-    if (WiFi.begin(ssid,pass) == 0)
-    {
-        Serial.println("Failed to configure WiFi");
-        while(1);
-    }
-    Serial.println();
-    udp.begin(PORT);
+  if (WiFi.begin(ssid, pass) == 0)
+  {
+    Serial.println("Failed to configure WiFi");
+    while (1);
+  }
+  Serial.println();
+  udp.begin(PORT);
 
-    printWifiStatus();
-    coap_setup();
-    endpoint_setup();
+  printWifiStatus();
+  coap_setup();
+  endpoint_setup();
 }
 
 void printWifiStatus() {
