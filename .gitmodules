@@ -1,0 +1,6 @@
+[submodule "proxy-http/go-coap"]
+	path = proxy-http/go-coap
+	url = https://github.com/dustin/go-coap
+[submodule "proxy-http/libcoap"]
+	path = proxy-http/libcoap
+	url = https://github.com/obgm/libcoap
