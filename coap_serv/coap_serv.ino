@@ -9,8 +9,8 @@
 #include "coap.h"
 
 
-char ssid[] = "WiFiDuino";      // your network SSID (name)
-char pass[] = "tprliwifi";   // your network password
+char ssid[] = "Freeboite";      // your network SSID (name)
+char pass[] = "(&hkazer!8g";   // your network password
 int keyIndex = 0;                // your network key Index number (needed only for WEP)
 IPAddress ip(192, 168, 1, 50);
 
