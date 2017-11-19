@@ -3,7 +3,8 @@ import sys
 import logging
 from coapthon.client.helperclient import HelperClient
 
-logging.basicConfig()
+logging.config.fileConfig('logging.conf', disable_existing_loggers=False)
+
 host="192.168.1.50"
 port=5683
 client=HelperClient(server=(host, port))

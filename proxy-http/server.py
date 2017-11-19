@@ -33,7 +33,7 @@ class S(BaseHTTPRequestHandler):
 				res=""
 				with open("values/temperature.dat", "r") as f :
 					for i in range(0, request_range) :
-						res+=f.readline() +"\n"
+						res+=f.readline()
 				self.wfile.write(res)
 
 
@@ -46,7 +46,7 @@ class S(BaseHTTPRequestHandler):
 				res=""
 				with open("values/humidite.dat", "r") as f :
 					for i in range(0, request_range) :
-						res+=f.readline() +"\n"
+						res+=f.readline()
 				self.wfile.write(res)
 
 
@@ -59,7 +59,7 @@ class S(BaseHTTPRequestHandler):
 				res=""
 				with open("values/light.dat", "r") as f :
 					for i in range(0, request_range) :
-						res+=f.readline() +"\n"
+						res+=f.readline()
 				self.wfile.write(res)
 
 		else :
