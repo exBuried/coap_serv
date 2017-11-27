@@ -50,7 +50,7 @@ class S(BaseHTTPRequestHandler):
 				self.wfile.write(res)
 
 
-		elif (path[0]=="luminosite") :
+		elif (path[0]=="/luminosite") :
 			if (len(path)==1):
 				with open("values/light.dat", "r") as f :
 					self.wfile.write(f.readline())
