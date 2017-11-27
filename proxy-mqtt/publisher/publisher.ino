@@ -18,8 +18,8 @@ int lightLevel;
 #define mqtt_port 1883
 #define MQTT_Broker "192.168.1.59"
 
-char ssid[] = "WiFiDuino";      // your network SSID (name)
-char pass[] = "tprliwifi";   // your network password
+char ssid[] = "Freeboite";      // your network SSID (name)
+char pass[] = "(&hkazer!8g";   // your network password
 int keyIndex = 0;                // your network key Index number (needed only for WEP)
 IPAddress ip(192, 168, 1, 50);
 
@@ -64,7 +64,7 @@ void reconnect() {
  Serial.print("Attempting MQTT connection...");
  // Attempt to connect
  
- if (mqtt_client.connect("ESP8266 Client")) {
+ if (mqtt_client.connect("RaspDuino")) {
   Serial.println("connected");
   // ... and subscribe to topic
 
@@ -89,18 +89,17 @@ void loop() {
     reconnect();
   }
 
-  Serial.println(Time.now());
   char buf[10];
   dtostrf(dht.readTemperature(), 5, 2, buf);
-  mqtt_client.publish("sensor/temperature", buf);
+  mqtt_client.publish("sensor/temperature", buf, true);
   //mqtt_client.publish("sensor", strcat("Temperature  ", buf));
   
   dtostrf(dht.readHumidity(), 5, 2, buf);
-  mqtt_client.publish("sensor/humidite", buf);
+  mqtt_client.publish("sensor/humidite", buf, true);
   //mqtt_client.publish("sensor", strcat("Humidite  ", buf));
   
   sprintf(buf, "%d", analogRead(lightPin));
-  mqtt_client.publish("sensor/luminosite", buf);
+  mqtt_client.publish("sensor/luminosite", buf, true);
   //mqtt_client.publish("sensor", strcat("Luminosite  ", buf));
 
   delay(DELAY);
